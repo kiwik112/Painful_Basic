@@ -16,12 +16,18 @@ async def on_ready() :
 async def pain(ctx) :
     if channel == "" :
         channel = ctx.channel
-        await ctx.send(" * * * PAINFUL BASIC ALPHA 2 * * *\rA SHITTON BYTES FREE\rNO COPYRIGHT 2022")
+        await ctx.send(" * * * PAINFUL BASIC ALPHA 3 * * *\rA SHITTON BYTES FREE\rNO COPYRIGHT 2022")
         return
     await ctx.send("Already being used elsewhere.")
 
-#@client.command(aliases = [ "PRINT\"", "$\"" ])
-#async def print(ctx, ) :
-    
+@client.command(aliases = [ "PRINT", "$" ])
+async def print(ctx, *, toprint) :
+    toprint += "f"
+    toprint = toprint.replace("\\\"", "#!")
+    printing = toprint.split("\"")
+    if not printing.length == 3 :
+        await ctx.send("?SYNTAX ERROR")
+        return
+    await ctx.send(printing[1].replace("#!", "\""))
 
 client.run(token)
