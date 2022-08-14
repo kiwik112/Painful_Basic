@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands
 
-channels = []
+lines = []
+channel = ""
 
 with open("./Token.txt") as f :
     token = f.read()
@@ -13,6 +14,14 @@ async def on_ready() :
 
 @client.command(aliases = [ "PAIN", "Pain" ])
 async def pain(ctx) :
-    if (not channels.contains(ctx.channel)) :
-        channels.Append(ctx.channel)
-        ctx.send(" * * * PAINFUL BASIC ALPHA 1 * * *\rA SHITTON BYTES FREE\rNO COPYRIGHT 2022")
+    if channel == "" :
+        channel = ctx.channel
+        await ctx.send(" * * * PAINFUL BASIC ALPHA 2 * * *\rA SHITTON BYTES FREE\rNO COPYRIGHT 2022")
+        return
+    await ctx.send("Already being used elsewhere.")
+
+#@client.command(aliases = [ "PRINT\"", "$\"" ])
+#async def print(ctx, ) :
+    
+
+client.run(token)
