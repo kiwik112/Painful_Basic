@@ -20,8 +20,14 @@ async def pain(ctx) :
         return
     await ctx.send("Already being used elsewhere.")
 
-#@client.command(aliases = [ "PRINT\"", "$\"" ])
-#async def print(ctx, ) :
-    
+@client.command(aliases = [ "PRINT", "$" ])
+async def printFn(ctx, *, toprint) :
+    toprint += "f"
+    toprint = toprint.replace("\\\"", "#!")
+    printing = toprint.split("\"")
+    if not printing.length == 3 :
+        await ctx.send("?SYNTAX ERROR")
+        return
+    await ctx.send(printing[1].replace("#!", "\""))
 
 client.run(token)
