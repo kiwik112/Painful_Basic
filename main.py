@@ -30,7 +30,7 @@ async def pain(ctx) :
     global channel
     if channel == "" :
         channel = ctx.channel
-        await ctx.send("``` * * * PAINFUL BASIC ALPHA 7 * * *\rA SHITTON BYTES FREE\rNO COPYRIGHT 2022```")
+        await ctx.send("``` * * * PAINFUL BASIC ALPHA 8 * * *\rA SHITTON BYTES FREE\rNO COPYRIGHT 2022```")
         return
     await ctx.send("Already being used elsewhere.")
 
@@ -46,6 +46,12 @@ async def printFn(ctx, *, toprint) :
         await ctx.send(printing[1].replace("#!", "\""))
     else :
         await ctx.send("?CHARACTER ERROR")
+
+@client.command(aliases = [ "EXIT" ])
+async def exitFn(ctx) :
+    global channel
+    await ctx.send("DISCONNECTED")
+    channel = ""
 
 @client.event
 async def on_command_error(ctx, error) :
