@@ -14,9 +14,10 @@ async def on_ready() :
 
 @client.command(aliases = [ "PAIN", "Pain" ])
 async def pain(ctx) :
+    global channel
     if channel == "" :
         channel = ctx.channel
-        await ctx.send(" * * * PAINFUL BASIC ALPHA 2 * * *\rA SHITTON BYTES FREE\rNO COPYRIGHT 2022")
+        await ctx.send("``` * * * PAINFUL BASIC ALPHA 3 * * *\rA SHITTON BYTES FREE\rNO COPYRIGHT 2022```")
         return
     await ctx.send("Already being used elsewhere.")
 
