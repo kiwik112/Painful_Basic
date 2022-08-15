@@ -1,8 +1,9 @@
 import discord
 from discord.ext import commands
 
-lines = []
+lines = {}
 channel = ""
+suppress = False
 
 with open("./Token.txt") as f :
     token = f.read()
@@ -12,12 +13,24 @@ client = commands.Bot(command_prefix = "")
 async def on_ready() :
     print(f"Connected to discord as {client.user}")
 
+@client.event
+async def on_message(message) :
+    global suppress
+    global lines
+    if message.channel == channel :
+        suppress = False
+        index = message.content.split(" ")[0]
+        if index.isdigit() :
+            suppress = True
+            lines[str(index)] = message.content[len(index) + 1:]
+    await client.process_commands(message)
+
 @client.command(aliases = [ "PAIN", "Pain" ])
 async def pain(ctx) :
     global channel
     if channel == "" :
         channel = ctx.channel
-        await ctx.send("``` * * * PAINFUL BASIC ALPHA 6 * * *\rA SHITTON BYTES FREE\rNO COPYRIGHT 2022```")
+        await ctx.send("``` * * * PAINFUL BASIC ALPHA 7 * * *\rA SHITTON BYTES FREE\rNO COPYRIGHT 2022```")
         return
     await ctx.send("Already being used elsewhere.")
 
@@ -36,7 +49,7 @@ async def printFn(ctx, *, toprint) :
 
 @client.event
 async def on_command_error(ctx, error) :
-    if channel == ctx.channel and ctx.message.content.isupper() :
+    if channel == ctx.channel and ctx.message.content.isupper() and not suppress :
         await ctx.send("?SYNTAX ERROR")
 
 client.run(token)
